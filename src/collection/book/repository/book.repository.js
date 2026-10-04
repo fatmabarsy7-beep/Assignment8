@@ -27,11 +27,6 @@ export async function updateBookByTitle(title, year) {
   );
 }
 
-export async function getBookByTitle(title) {
-  return await Book.findOne({
-    title: title
-  });
-}
 
 export async function getBooksBetweenYears(from, to) {
   return await Book.find({

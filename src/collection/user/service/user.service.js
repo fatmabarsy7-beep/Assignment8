@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import * as authRepository from "../repository/auth.repository.js";
+import * as authRepository from "../repository/author.repository.js";
 
 export async function register(data) {
   const { name, email, password } = data;
@@ -48,7 +48,7 @@ export async function login(data) {
     {
       userId: user._id
     },
-    process.env.JWT_SECRET,
+   "mySuperSecretKey123",
     {
       expiresIn: "1d"
     }

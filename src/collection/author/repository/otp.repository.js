@@ -1,36 +1,52 @@
 import mongoose from "mongoose";
 
-// 1
-export async function createBooksCollection() {
-  return await mongoose.connection.db.createCollection("books", {
-    validator: {
-      $jsonSchema: {
-        bsonType: "object",
-        required: ["title"],
-        properties: {
-          title: {
-            bsonType: "string",
-            minLength: 1
-          }
-        }
-      }
-    }
-  });
+// // 1
+// export async function createBooksCollection() {
+//   return await mongoose.connection.db.createCollection("books", {
+//     validator: {
+//       $jsonSchema: {
+//         bsonType: "object",
+//         required: ["title"],
+//         properties: {
+//           title: {
+//             bsonType: "string",
+//             minLength: 1
+//           }
+//         }
+//       }
+//     }
+//   });
+// }
+
+// // 3
+// export async function createCappedLogsCollection() {
+//   return await mongoose.connection.db.createCollection("logs", {
+//     capped: true,
+//     size: 1048576
+//   });
+// }
+
+// // 4
+// export async function createBookTitleIndex() {
+//   return await mongoose.connection.db
+//     .collection("books")
+//     .createIndex({
+//       title: 1
+//     });
+// }
+
+
+import { Author } from "../model/author.model.js";
+
+export async function createAuthor(authorData) {
+  return await Author.create(authorData);
 }
 
-// 3
-export async function createCappedLogsCollection() {
-  return await mongoose.connection.db.createCollection("logs", {
-    capped: true,
-    size: 1048576
-  });
+export async function findAuthorByEmail(email) {
+  return await Author.findOne({ email });
 }
 
-// 4
-export async function createBookTitleIndex() {
-  return await mongoose.connection.db
-    .collection("books")
-    .createIndex({
-      title: 1
-    });
+export async function getAllAuthor() {
+  return await Author.find();
 }
+
