@@ -1,5 +1,5 @@
 import { config } from 'dotenv';
-import './commen/db/mongoose.js';
+import './lib/db/mongoose.js';
 import express from 'express';
 import bookRouter from './collection/book/book.route.js'
 import authorRouter from './collection/author/author.route.js';
