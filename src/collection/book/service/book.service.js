@@ -11,16 +11,33 @@ export async function createBooks(bookData) {
      if(!bookData) throw new error('this book not exist')
 }
 
+const cache = new Map();
+
 export async function getBookByTitle(title) {
-    return await bookRepository.getBookByTitle(title)
+    const key = title.trim().toLowerCase();
+
+    if (cache.has(key)) {
+        console.log("CACHE HIT:", key);
+        return cache.get(key);
+    }
+
+    console.log("CACHE MISS:", key);
+
+    const book = await bookRepository.getBookByTitle(title);
+
+    if (book) {
+        cache.set(key, book);
+    }
+
+    return book;
 }
-
-
 export async function getAllBooks() {
+
     return await bookRepository.getAllBooks()
 }
 
 export async function updateBookByTitle(title, year) {
+
   return await bookRepository.updateBookByTitle(title, year);
 }
 

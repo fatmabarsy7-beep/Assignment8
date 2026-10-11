@@ -30,7 +30,7 @@ export async function login(req, res, next) {
 
 export async function createAuthor(req,res,next){
   try {
-    const author = await authorService.createBook(req.body);
+    const author = await authorService.createAuthor(req.body);
 
     res.status(201).json({
       message: "book created successfully",

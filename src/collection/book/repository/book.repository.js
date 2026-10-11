@@ -9,7 +9,7 @@ export async function createBooks(bookData) {
 }
 
 export async function getBookByTitle(title) {
-    return await Book.findOne(title)
+    return await Book.findOne({title})
 }
 
 export async function getAllBooks() {
